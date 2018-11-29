@@ -17,3 +17,10 @@ steps:
     dotnet test $(projectName).Tests/$(projectName).Tests.csproj --configuration $(buildConfiguration) --logger trx  --collect "Code coverage"
     dotnet publish $(projectName)/$(projectName).csproj --configuration $(buildConfiguration) --output $BUILD_ARTIFACTSTAGINGDIRECTORY
   displayName: 'Build & Test'
+  
+- task: PublishTestResults@2
+  inputs:
+    testRunner: VSTest
+    testResultsFiles: '**/*.trx'
+
+- task: PublishBuildArtifacts@1
