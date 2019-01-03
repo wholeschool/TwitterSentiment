@@ -1,15 +1,15 @@
-using System;
-using Xunit;
-using System.Net.Http;
-using System.Threading.Tasks;
-using Shouldly;
-using TwitterSentiment;
-using System.Collections.Generic;
-using Tests.Fakes;
-using System.Net;
 using Newtonsoft.Json;
-using System.Text;
 using NSubstitute;
+using Shouldly;
+using System;
+using System.Collections.Generic;
+using System.Net;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
+using Tests.Fakes;
+using TwitterSentiment;
+using Xunit;
 
 namespace Tests
 {
@@ -22,9 +22,9 @@ namespace Tests
         [Fact]
         public async Task Get_Tweets_For_Hastag_Using_TypedHttpClient()
         {
-            var tweet1 = new Tweet("This is a really negative tweet");
-            var tweet2 = new Tweet("This is a super positive great tweet");
-            var tweet3 = new Tweet("This is another really super positive amazing tweet");
+            var tweet1 = new Tweet("1", "This is a really negative tweet");
+            var tweet2 = new Tweet("2", "This is a super positive great tweet");
+            var tweet3 = new Tweet("3", "This is another really super positive amazing tweet");
 
             var tweets = new List<Tweet> { tweet1, tweet2, tweet3  };
 
