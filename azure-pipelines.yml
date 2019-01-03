@@ -11,8 +11,13 @@ variables:
   projectName: 'TwitterSentiment'
 
 steps:
-- task: SonarSource.sonarcloud.ce096e50-6155-4de8-8800-4221aaeed4a1.SonarCloudAnalyze@1
-  displayName: 'Run Code Analysis'
+- task: SonarSource.sonarcloud.14d9cde6-c1da-4d55-aa01-2965cd301255.SonarCloudPrepare@1
+  displayName: 'Prepare analysis on SonarCloud'
+  inputs:
+    SonarCloud: SonarCloud
+    organization: 'steven-knox24260'
+    projectKey: 'twitter-sentiment-juihdfewuirye87t34ui587'
+    projectName: 'Twitter Sentiment Analysis'
 
 - script: |
     dotnet build $(projectName)/$(projectName).csproj --configuration $(buildConfiguration)
@@ -26,16 +31,8 @@ steps:
     testRunner: VSTest
     testResultsFiles: '**/*.trx'
 
-- task: SonarSource.sonarcloud.14d9cde6-c1da-4d55-aa01-2965cd301255.SonarCloudPrepare@1
-  displayName: 'Prepare analysis on SonarCloud'
-  inputs:
-    SonarCloud: SonarCloud
-
-    organization: 'steven-knox24260'
-
-    projectKey: 'twitter-sentiment-juihdfewuirye87t34ui587'
-
-    projectName: 'Twitter Sentiment Analysis'
+- task: SonarSource.sonarcloud.ce096e50-6155-4de8-8800-4221aaeed4a1.SonarCloudAnalyze@1
+  displayName: 'Run Code Analysis'
 
 - task: SonarSource.sonarcloud.38b27399-a642-40af-bb7d-9971f69712e8.SonarCloudPublish@1
   displayName: 'Publish Quality Gate Result'
